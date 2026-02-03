@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Dilina 💕</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <title>Dilina 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
     body {
       margin: 0;
-      height: 100vh;
+      min-height: 100vh;
       background: radial-gradient(circle at top, #ffe6f0, #ffb6c1);
       display: flex;
       align-items: center;
@@ -18,42 +18,38 @@
     }
 
     .card {
-      background: #fff;
-      padding: 30px 25px;
-      border-radius: 24px;
+      background: white;
+      padding: 30px 24px;
+      border-radius: 26px;
       text-align: center;
       box-shadow: 0 25px 60px rgba(0,0,0,0.2);
-      max-width: 380px;
+      max-width: 390px;
+      width: 100%;
       animation: popIn 0.6s ease;
     }
 
     @keyframes popIn {
-      from { transform: scale(0.8); opacity: 0; }
+      from { transform: scale(0.85); opacity: 0; }
       to { transform: scale(1); opacity: 1; }
     }
 
     h1 {
       color: #ff4d6d;
-      margin-bottom: 5px;
       font-size: 26px;
+      margin-bottom: 6px;
     }
 
     .subtitle {
-      color: #777;
       font-size: 14px;
-      margin-bottom: 20px;
-    }
-
-    .photo-frame {
-      position: relative;
-      margin-bottom: 12px;
+      color: #777;
+      margin-bottom: 18px;
     }
 
     .photo-frame img {
-      width: 220px;
-      height: 220px;
+      width: 230px;
+      height: 230px;
       object-fit: cover;
-      border-radius: 22px;
+      border-radius: 24px;
       border: 5px solid #ff4d6d;
       animation: float 3s ease-in-out infinite;
     }
@@ -65,15 +61,15 @@
     }
 
     .caption {
+      margin: 14px 0 22px;
       font-size: 14px;
       color: #555;
-      margin-bottom: 20px;
-      min-height: 40px;
+      min-height: 44px;
     }
 
     .buttons {
       position: relative;
-      height: 60px;
+      height: 70px;
     }
 
     button {
@@ -83,13 +79,11 @@
       font-size: 16px;
       cursor: pointer;
       transition: all 0.2s ease;
-      position: relative;
     }
 
     #yes {
       background: #ff4d6d;
       color: white;
-      margin-right: 10px;
       box-shadow: 0 6px 15px rgba(255,77,109,0.4);
     }
 
@@ -101,32 +95,15 @@
       background: #eee;
       color: #999;
       position: absolute;
-    }
-
-    .heart {
-      position: absolute;
-      color: #ff4d6d;
-      font-size: 20px;
-      animation: rise 2s linear forwards;
-      pointer-events: none;
-    }
-
-    @keyframes rise {
-      from {
-        transform: translateY(0);
-        opacity: 1;
-      }
-      to {
-        transform: translateY(-80px);
-        opacity: 0;
-      }
+      left: 120px;
+      top: 0;
     }
   </style>
 </head>
 
 <body>
   <div class="card">
-    <h1>Dilina 💖</h1>
+    <h1>Dilina 💕</h1>
     <div class="subtitle">Will you be my Valentine?</div>
 
     <div class="photo-frame">
@@ -134,22 +111,23 @@
     </div>
 
     <div class="caption" id="caption">
-      The day I realized I was completely done for 💘
+      This is what comfort and warmth feel like to me 🖤
     </div>
 
     <div class="buttons">
-      <button id="yes">YES 💕</button>
+      <button id="yes">YES 💖</button>
       <button id="no">No 😢</button>
     </div>
   </div>
 
   <script>
+    // Photo rotation
     const photos = [
-      { src: "photo1.jpeg", caption: "The day I realized I was completely done for 💘" },
-      { src: "photo2.jpeg", caption: "Still can’t believe you’re real 😭" },
-      { src: "photo3.jpeg", caption: "My favorite smile in the world 🥰" },
-      { src: "photo4.jpeg", caption: "Every moment with you feels like home 🏡❤️" },
-      { src: "photo5.jpeg", caption: "How did I get this lucky?! 💞" }
+      { src: "photo1.jpeg", caption: "This is what comfort and warmth feel like to me 🖤" },
+      { src: "photo2.jpeg", caption: "Every journey is better with you beside me ✈️❤️" },
+      { src: "photo3.jpeg", caption: "Effortlessly beautiful, inside and out" },
+      { src: "photo4.jpeg", caption: "With you feels right—always" },
+      { src: "photo5.jpeg", caption: "Proof that you make life lighter 😂❤️" }
     ];
 
     let index = 0;
@@ -160,46 +138,87 @@
       index = (index + 1) % photos.length;
       img.src = photos[index].src;
       caption.textContent = photos[index].caption;
-    }, 3000);
+    }, 3200);
 
+    // NO button chaos
     const noBtn = document.getElementById("no");
-    const yesBtn = document.getElementById("yes");
+    const noTexts = [
+      "No 😢",
+      "Wait… what?",
+      "Are you sure??",
+      "PLEASE 😭",
+      "I will cry.",
+      "This feels illegal.",
+      "Try YES 😈",
+      "You’re breaking my heart 💔",
+      "I give up 😵‍💫"
+    ];
 
-    noBtn.addEventListener("mouseover", () => {
-      const x = Math.random() * 240 - 120;
-      const y = Math.random() * 120 - 60;
-      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    let noClicks = 0;
+
+    function moveNo() {
+      const x = Math.random() * 320 - 160;
+      const y = Math.random() * 180 - 90;
+      const r = Math.random() * 20 - 10;
+      noBtn.style.transform = `translate(${x}px, ${y}px) rotate(${r}deg)`;
+    }
+
+    noBtn.addEventListener("mouseover", moveNo);
+    noBtn.addEventListener("click", () => {
+      moveNo();
+      if (noClicks < noTexts.length - 1) {
+        noClicks++;
+        noBtn.textContent = noTexts[noClicks];
+      }
     });
 
-    yesBtn.addEventListener("click", () => {
+    // YES page
+    document.getElementById("yes").addEventListener("click", () => {
       document.body.innerHTML = `
         <div style="
+          min-height:100vh;
           display:flex;
           flex-direction:column;
           align-items:center;
           justify-content:center;
-          height:100vh;
           background: radial-gradient(circle, #ffe6f0, #ffb6c1);
-          font-family:'Comic Sans MS', cursive;
+          font-family:'Poppins','Comic Sans MS', cursive;
           text-align:center;
-          padding:20px;
+          padding:30px;
+          overflow:auto;
         ">
-          <h1 style="color:#ff4d6d;font-size:32px;">SHE SAID YES 😭💘</h1>
-          <p>You just made me the happiest person alive.</p>
-          <p>I love you endlessly, Dilina ❤️</p>
+          <h1 style="color:#ff4d6d;font-size:30px;margin-bottom:20px;">
+            I LOVE YOU
+          </h1>
+
+          <p style="max-width:720px;font-size:14px;line-height:1.65;color:#444;">
+            my gorgeous, elegant, intelligent, charming, kind, thoughtful, strong,
+            courageous, creative, brilliant, gentle, humble, generous, passionate,
+            wise, funny, loyal, dependable, graceful, radiant, calm, confident,
+            warm, compassionate, witty, adventurous, respectful, sincere,
+            magnetic, bold, articulate, empathetic, inspiring, honest, patient,
+            powerful, attentive, uplifting, classy, friendly, reliable, ambitious,
+            intuitive, talented, supportive, grounded, determined, charismatic,
+            extraordinary, trustworthy, noble, dignified, perceptive, innovative,
+            refined, considerate, balanced, open-minded, composed, imaginative,
+            mindful, optimistic, virtuous, noble-hearted, well-spoken, quick-witted,
+            deep, philosophical, fearless, affectionate, expressive, emotionally
+            intelligent, resourceful, delightful, fascinating, sharp, selfless,
+            driven, assertive, authentic, vibrant, playful, observant, skillful,
+            generous-spirited, practical, comforting, brave, wise-hearted,
+            enthusiastic, dependable, tactful, enduring, discreet, well-mannered,
+            mature, tasteful, joyful, understanding, genuine, brilliant-minded,
+            encouraging, well-rounded, dynamic, radiant-spirited, soulful,
+            radiant-hearted, insightful, creative-souled, justice-minded,
+            reliable-hearted, tender, uplifting-minded, persevering, devoted,
+            angelic, down-to-earth baby Dilina
+          </p>
+
+          <p style="margin-top:26px;font-size:18px;color:#ff4d6d;">
+            ❤️ Forever yours ❤️
+          </p>
         </div>
       `;
-    });
-
-    document.addEventListener("click", (e) => {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.textContent = "💖";
-      heart.style.left = e.pageX + "px";
-      heart.style.top = e.pageY + "px";
-      document.body.appendChild(heart);
-
-      setTimeout(() => heart.remove(), 2000);
     });
   </script>
 </body>
